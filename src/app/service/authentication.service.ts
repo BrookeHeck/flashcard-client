@@ -32,8 +32,12 @@ export class AuthenticationService {
     localStorage.setItem('benchmark', token);
   }
 
+  public loadToken(): void {
+    this.token = localStorage.getItem('benchmark');
+  }
+
   public getToken(): string {
-    return localStorage.getItem('benchmark');
+    return this.token;
   }
 
   public addUserToLocalCache(user: string): void {
