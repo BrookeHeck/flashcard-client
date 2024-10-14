@@ -24,7 +24,23 @@ export class AuthenticationService {
     this.token = '';
     this.loggedInUsername = '';
     localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('users');
+    localStorage.removeItem('benchmark');
+  }
+
+  public saveToken(token: string): void {
+    this.token = token;
+    localStorage.setItem('benchmark', token);
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('benchmark');
+  }
+
+  public addUserToLocalCache(user: string): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public getUserFromCache(): User {
+    return JSON.parse(localStorage.getItem('user'));
   }
 }
