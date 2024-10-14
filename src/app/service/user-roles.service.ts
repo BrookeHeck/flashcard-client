@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpRequestService} from "./http-request.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRolesService {
 
-  constructor() { }
+  constructor(private http: HttpRequestService) { }
+
+  public login(user: Use)
 }
