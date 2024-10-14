@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequestService} from "./http-request.service";
 import User from "../model/user";
 import {Observable} from "rxjs";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthenticationService {
   private token: string = '';
   private loggedInUsername = '';
 
-  constructor(private http: HttpRequestService) { }
+  constructor(private http: HttpRequestService, private jwtHelper: JwtHelperService) { }
 
   public login(username: string, password: string) {
     return this.http.basicAuth(username, password);
@@ -46,5 +47,19 @@ export class AuthenticationService {
 
   public getUserFromCache(): User {
     return JSON.parse(localStorage.getItem('user'));
+  }
+
+  public isLoggedIn(): boolean {
+    this.loadToken();
+    if(this.token) {
+      const subject = this.jwtHelper.decodeToken(this.token).sub;
+      if((subject != null || subject != '') && !this.jwtHelper.isTokenExpired(this.token)) {
+        this.loggedInUsername = subject;
+        return true;
+      } else return false;
+    } else {
+      this.logout();
+      return false;
+    }
   }
 }
