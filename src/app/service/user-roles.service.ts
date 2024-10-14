@@ -8,5 +8,4 @@ export class UserRolesService {
 
   constructor(private http: HttpRequestService) { }
 
-  public login(user: Use)
 }
