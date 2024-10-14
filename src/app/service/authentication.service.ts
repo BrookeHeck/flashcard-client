@@ -7,6 +7,8 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private token: string = '';
+  private loggedInUsername = '';
 
   constructor(private http: HttpRequestService) { }
 
@@ -16,5 +18,13 @@ export class AuthenticationService {
 
   public register(user: User): Observable<User> {
     return this.http.postRequest<User, User>('user/register', user);
+  }
+
+  public logout(): void {
+    this.token = '';
+    this.loggedInUsername = '';
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('users');
   }
 }
