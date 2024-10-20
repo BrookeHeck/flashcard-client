@@ -1,1 +1,51 @@
-<p>general-registration-page works!</p>
+<h1 class="m-auto mb-4 mt-2">Register</h1>
+<form [formGroup]="registrationForm" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="d-flex flex-column gap-2">
+    <label for="firstName">First Name</label>
+    <input
+      pInputText
+      id="firstName"
+      aria-describedby="first-name"
+      formControlName="firstName" />
+  </div>
+  <div class="d-flex flex-column gap-2">
+    <label for="firstName">Last Name</label>
+    <input
+      pInputText
+      id="lastName"
+      aria-describedby="last-name"
+      formControlName="lastName" />
+  </div>
+  <div class="d-flex flex-column gap-2">
+    <label for="username">Username</label>
+    <input
+      pInputText
+      id="username"
+      aria-describedby="username"
+      formControlName="username" />
+  </div>
+  <div class="d-flex flex-column gap-2">
+    <label for="email">Email</label>
+    <input
+      pInputText
+      id="email"
+      aria-describedby="email"
+      formControlName="email" />
+  </div>
+  <div class="d-flex flex-column gap-2">
+    <label for="password">Password</label>
+    <input
+      pInputText
+      id="password"
+      aria-describedby="password"
+      formControlName="password" />
+  </div>
+  <div class="d-flex flex-column gap-2">
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      pInputText
+      id="confirmPassword"
+      aria-describedby="confirm-password"
+      formControlName="confirmPassword" />
+  </div>
+</form>
