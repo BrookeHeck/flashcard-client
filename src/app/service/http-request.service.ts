@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import {Observable} from "rxjs";
+import {Observable, using} from "rxjs";
 import User from "../model/user";
 import {btoa} from "buffer";
 
@@ -21,7 +21,9 @@ export class HttpRequestService {
 
   public postRequest<T, E>(endpoint: string, object: T): Observable<E> {
     const url =  `${this.apiUrl}/${endpoint}`;
-    return this.httpClient.post(url, object);
+    console.log(url);
+    console.log(object);
+    return this.httpClient.post<E>(url, object);
   }
 
   public deleteById(endpoint: string, objectId: number) {

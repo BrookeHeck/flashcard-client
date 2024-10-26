@@ -1,6 +1,6 @@
 <h1 class="m-auto mb-4 mt-2">Register</h1>
 <form [formGroup]="registrationForm" class="d-flex flex-column justify-content-center align-items-center">
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-1 mb-2">
     <label for="firstName">First Name</label>
     <input
       pInputText
@@ -8,7 +8,7 @@
       aria-describedby="first-name"
       formControlName="firstName" />
   </div>
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-1 mb-2">
     <label for="firstName">Last Name</label>
     <input
       pInputText
@@ -16,7 +16,7 @@
       aria-describedby="last-name"
       formControlName="lastName" />
   </div>
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-1 mb-2">
     <label for="username">Username</label>
     <input
       pInputText
@@ -24,7 +24,7 @@
       aria-describedby="username"
       formControlName="username" />
   </div>
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-1 mb-2">
     <label for="email">Email</label>
     <input
       pInputText
@@ -32,7 +32,7 @@
       aria-describedby="email"
       formControlName="email" />
   </div>
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-1 mb-2">
     <label for="password">Password</label>
     <input
       pInputText
@@ -40,7 +40,7 @@
       aria-describedby="password"
       formControlName="password" />
   </div>
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-1 mb-2">
     <label for="confirmPassword">Confirm Password</label>
     <input
       pInputText
@@ -48,4 +48,5 @@
       aria-describedby="confirm-password"
       formControlName="confirmPassword" />
   </div>
+  <p-button (onClick)="registerUser()">Submit</p-button>
 </form>

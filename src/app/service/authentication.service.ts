@@ -18,6 +18,7 @@ export class AuthenticationService {
   }
 
   public register(user: User): Observable<User> {
+    console.log(user);
     return this.http.postRequest<User, User>('user/register', user);
   }
 
