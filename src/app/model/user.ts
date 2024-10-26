@@ -8,7 +8,7 @@ export default class User {
   email: string;
   firstName: string;
   lastName: string;
-  role: ROLE;
+  roles: ROLE[]
   profileImageUrl: string;
   lastLoginDate: Date;
   dateJoined: Date;

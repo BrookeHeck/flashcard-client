@@ -14,11 +14,10 @@ export class AuthenticationService {
   constructor(private http: HttpRequestService, private jwtHelper: JwtHelperService) { }
 
   public login(username: string, password: string) {
-    return this.http.basicAuth(username, password);
+    return this.http.sendBasicAuthRequest(username, password);
   }
 
   public register(user: User): Observable<User> {
-    console.log(user);
     return this.http.postRequest<User, User>('user/register', user);
   }
 
