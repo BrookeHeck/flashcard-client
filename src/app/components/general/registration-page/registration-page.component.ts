@@ -5,6 +5,7 @@ import {Button} from "primeng/button";
 import {AuthenticationService} from "../../../service/authentication.service";
 import User from "../../../model/user";
 import {filter, take} from "rxjs";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-registration-page',
@@ -12,7 +13,8 @@ import {filter, take} from "rxjs";
   imports: [
     InputTextModule,
     ReactiveFormsModule,
-    Button
+    Button,
+    RouterLink
   ],
   templateUrl: './registration-page.component.html',
   styleUrl: './registration-page.component.scss'

@@ -1,4 +1,4 @@
-<h1 class="m-auto mb-4 mt-2">Register</h1>
+<h1 class="m-auto mb-4 mt-4">Register</h1>
 <form [formGroup]="registrationForm" class="d-flex flex-column justify-content-center align-items-center">
   <div class="d-flex flex-column gap-1 mb-2">
     <label for="firstName">First Name</label>
@@ -48,5 +48,6 @@
       aria-describedby="confirm-password"
       formControlName="confirmPassword" />
   </div>
-  <p-button (onClick)="registerUser()">Submit</p-button>
+  <p-button (onClick)="registerUser()" class="mt-2">Submit</p-button>
+  <p class="mt-3"><a routerLink="/" class="m-auto">Back to Login</a></p>
 </form>
