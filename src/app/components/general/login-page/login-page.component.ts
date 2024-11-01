@@ -28,9 +28,7 @@ export class LoginPageComponent {
 
   login() {
     const {username, password} = this.loginForm.controls;
-    this.authService.login(username.value, password.value).pipe(take(1)).subscribe(result => {
-      console.log(result);
-    });
+    this.authService.login(username.value, password.value).pipe(take(1)).subscribe(result => console.log(result));
   }
 
 }
