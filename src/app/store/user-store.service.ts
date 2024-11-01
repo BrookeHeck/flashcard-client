@@ -8,4 +8,8 @@ import User from "../model/user";
 export class UserStoreService {
   private _user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   public user$: Observable<User> = this._user$.asObservable();
+
+  public saveUser(user: User) {
+    this._user$.next(user);
+  }
 }

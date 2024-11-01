@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequestService} from "./http-request.service";
 import User from "../model/user";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
@@ -13,8 +13,12 @@ export class AuthenticationService {
 
   constructor(private http: HttpRequestService, private jwtHelper: JwtHelperService) { }
 
-  public login(username: string, password: string) {
-    return this.http.sendBasicAuthRequest(username, password);
+  public login(username: string, password: string): Observable<User> {
+    return this.http.sendBasicAuthRequest(username, password).pipe(map(response => {
+      console.log(response.headers)
+      this.saveToken(response.headers.get('jwt-header'));
+      return response.body;
+    }));
   }
 
   public register(user: User): Observable<User> {

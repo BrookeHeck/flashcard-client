@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import {Observable} from "rxjs";
 import User from "../model/user";
@@ -28,12 +28,14 @@ export class HttpRequestService {
     this.httpClient.delete(url);
   }
 
-  public sendBasicAuthRequest(username: string, password: string): Observable<User> {
+  public sendBasicAuthRequest(username: string, password: string): Observable<HttpResponse<User>> {
     const basicAuth = btoa(`${username}:${password}`);
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Basic ${basicAuth}`,
       }),
+      observe: "response" as "response",
+      responseType: "json" as "json"
     }
     return this.httpClient.get<User>(`${this.apiUrl}/user/login`, httpOptions);
   }

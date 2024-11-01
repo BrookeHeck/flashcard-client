@@ -4,6 +4,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {InputTextModule} from "primeng/inputtext";
 import {AuthenticationService} from "../../../service/authentication.service";
 import {take} from "rxjs";
+import {UserStoreService} from "../../../store/user-store.service";
 
 @Component({
   selector: 'app-login-page',
@@ -23,12 +24,15 @@ export class LoginPageComponent {
     password: new FormControl(""),
   });
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private userStore: UserStoreService) {
   }
 
   login() {
     const {username, password} = this.loginForm.controls;
-    this.authService.login(username.value, password.value).pipe(take(1)).subscribe(result => console.log(result));
+    this.authService.login(username.value, password.value).pipe(take(1)).subscribe(user => {
+      this.userStore.saveUser(user);
+      console.log(user);
+    });
   }
 
 }
