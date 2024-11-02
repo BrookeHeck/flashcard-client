@@ -15,12 +15,11 @@ export class AuthenticationService {
 
   public login(username: string, password: string): Observable<User> {
     return this.http.sendBasicAuthRequest(username, password).pipe(map(response => {
-      console.log(response.headers)
       this.saveToken(response.headers.get('jwt-header'));
+      this.addUserToLocalCache(response.body);
       return response.body;
     }));
   }
-
   public register(user: User): Observable<User> {
     return this.http.postRequest<User, User>('user/register', user);
   }

@@ -12,4 +12,12 @@ export class UserStoreService {
   public saveUser(user: User) {
     this._user$.next(user);
   }
+
+  get userRoles() {
+    return this._user$.getValue().roles;
+  }
+
+  get username() {
+    return this._user$.getValue().username;
+  }
 }
