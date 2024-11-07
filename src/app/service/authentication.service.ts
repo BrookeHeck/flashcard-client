@@ -5,6 +5,7 @@ import {map, Observable} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {DOCUMENT} from "@angular/common";
 import {UserStoreService} from "../store/user-store.service";
+import {PERMISSION} from "../enum/PERMISSION";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class AuthenticationService {
   }
   public register(user: User): Observable<User> {
     return this.http.postRequest<User, User>('user/register', user);
+  }
+
+  public selectRoleById(roleId: number): Observable<PERMISSION[]> {
+    return this.http.getRequest<PERMISSION[]>(`user/select-role-org/${roleId}`);
   }
 
   public logout(): void {

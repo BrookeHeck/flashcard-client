@@ -5,6 +5,8 @@ import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {UserStoreService} from "../../../store/user-store.service";
 import {FormsModule} from "@angular/forms";
 import {Button} from "primeng/button";
+import {AuthenticationService} from "../../../service/authentication.service";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-select-role',
@@ -21,10 +23,12 @@ export class SelectRoleComponent {
     {field: "id", header: "Select Role/Org"}
   ];
 
-  constructor(public userStore: UserStoreService) {}
+  constructor(public userStore: UserStoreService, private authService: AuthenticationService) {}
 
-  public test() {
-    console.log(this.selectedRoleId);
+  public submitRoleSelection() {
+    this.authService.selectRoleById(this.selectedRoleId).pipe(take(1)).subscribe(permissions => {
+      console.log(permissions);
+    })
   }
 
 }
