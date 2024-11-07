@@ -1,9 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import User from "./model/user";
 import {AuthenticationService} from "./service/authentication.service";
-import {UserStoreService} from "./store/user-store.service";
-import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +9,13 @@ import {DOCUMENT} from "@angular/common";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'flashcard-game';
+
+  constructor(private authService: AuthenticationService) {
+  }
+
+  ngOnInit() {
+    this.authService.setUserDataOnPageRefresh();
+  }
 }
