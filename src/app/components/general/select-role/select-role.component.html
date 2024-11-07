@@ -10,8 +10,8 @@
         <span [hidden]="col.field === 'id' ">{{ rowData[col.field] }}</span>
         <span *ngIf="col.field === 'id'">
           <p-radioButton
-            [value]="rowData[col.field]"
-            [(ngModel)]="selectedRoleId"
+            [value]="rowData"
+            [(ngModel)]="selectedRole"
             inputId="roleId"
           ></p-radioButton>
         </span>
@@ -20,4 +20,4 @@
   </ng-template>
 </p-table>
 
-<p-button (onClick)="submitRoleSelection()" class="mt-1" [disabled]="!selectedRoleId">Submit</p-button>
+<p-button (onClick)="submitRoleSelection()" class="mt-1" [disabled]="!selectedRole">Submit</p-button>

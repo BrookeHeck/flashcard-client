@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {Button} from "primeng/button";
 import {AuthenticationService} from "../../../service/authentication.service";
 import {take} from "rxjs";
+import Role from "../../../model/role";
 
 @Component({
   selector: 'app-select-role',
@@ -16,7 +17,7 @@ import {take} from "rxjs";
   styleUrl: './select-role.component.scss'
 })
 export class SelectRoleComponent {
-  selectedRoleId: number;
+  selectedRole: Role;
   columns: {field: string, header: string}[] = [
     {field: "role", header: "Role"},
     {field: "organizationName", header: "Organization"},
@@ -26,8 +27,9 @@ export class SelectRoleComponent {
   constructor(public userStore: UserStoreService, private authService: AuthenticationService) {}
 
   public submitRoleSelection() {
-    this.authService.selectRoleById(this.selectedRoleId).pipe(take(1)).subscribe(permissions => {
-      console.log(permissions);
+    this.authService.selectRoleById(this.selectedRole.id).pipe(take(1)).subscribe(permissions => {
+      this.userStore.setSelectedRole(this.selectedRole);
+      this.userStore.setPermissions(permissions);
     })
   }
 
