@@ -81,7 +81,7 @@ export class AuthenticationService {
   }
 
   setUserDataOnPageRefresh() {
-    if(this.sessionStorage) {
+    if(this.sessionStorage && this.isLoggedIn()) {
       this.loadToken();
       this.userStore.saveUser(this.getUserFromCache());
     }
