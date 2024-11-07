@@ -15,6 +15,6 @@ export class UserStoreService {
   }
 
   get userRoles$(): Observable<Role[]> {
-    return this.user$.pipe(map(user => user.roles));
+    return this.user$.pipe(map(user => user?.roles ?? []));
   }
 }

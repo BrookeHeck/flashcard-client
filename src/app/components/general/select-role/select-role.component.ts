@@ -4,11 +4,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {UserStoreService} from "../../../store/user-store.service";
 import {FormsModule} from "@angular/forms";
+import {Button} from "primeng/button";
 
 @Component({
   selector: 'app-select-role',
   standalone: true,
-  imports: [TableModule, RadioButtonModule, NgForOf, AsyncPipe, NgIf, FormsModule],
+  imports: [TableModule, RadioButtonModule, NgForOf, AsyncPipe, NgIf, FormsModule, Button],
   templateUrl: './select-role.component.html',
   styleUrl: './select-role.component.scss'
 })
@@ -20,8 +21,10 @@ export class SelectRoleComponent {
     {field: "id", header: "Select Role/Org"}
   ];
 
-  constructor(public userStore: UserStoreService) {
-  }
+  constructor(public userStore: UserStoreService) {}
 
+  public test() {
+    console.log(this.selectedRoleId);
+  }
 
 }
