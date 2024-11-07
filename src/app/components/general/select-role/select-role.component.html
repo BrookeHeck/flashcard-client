@@ -1,0 +1,21 @@
+<p-table styleClass="p-datatable-striped" [columns]="columns" [value]="userStore.userRoles$ | async ">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">{{col.header}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        <span [hidden]="col === 'id' ">{{ rowData[col.field] }}</span>
+        <span *ngIf="col === 'id'">
+          <p-radioButton
+            [value]="rowData[col.field]"
+            [(ngModel)]="selectedRoleId"
+            inputId="roleId"
+          ></p-radioButton>
+        </span>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

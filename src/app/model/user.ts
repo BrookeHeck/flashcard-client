@@ -1,4 +1,5 @@
 import {ROLE} from "../enum/ROLE";
+import Role from "./role";
 
 export default class User {
   id: number;
@@ -8,7 +9,7 @@ export default class User {
   email: string;
   firstName: string;
   lastName: string;
-  roles: ROLE[]
+  roles: Role[]
   profileImageUrl: string;
   lastLoginDate: Date;
   dateJoined: Date;

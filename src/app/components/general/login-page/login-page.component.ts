@@ -5,6 +5,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {AuthenticationService} from "../../../service/authentication.service";
 import {take} from "rxjs";
 import {UserStoreService} from "../../../store/user-store.service";
+import {RouterService} from "../../../service/router.service";
 
 @Component({
   selector: 'app-login-page',
@@ -24,14 +25,16 @@ export class LoginPageComponent {
     password: new FormControl(""),
   });
 
-  constructor(private authService: AuthenticationService, private userStore: UserStoreService) {
+  constructor(private authService: AuthenticationService,
+              private userStore: UserStoreService,
+              private routerService: RouterService) {
   }
 
   login() {
     const {username, password} = this.loginForm.controls;
     this.authService.login(username.value, password.value).pipe(take(1)).subscribe(user => {
       this.userStore.saveUser(user);
-      console.log(user);
+      if(user.roles) this.routerService.navigateToSelectRoleComponent();
     });
   }
 

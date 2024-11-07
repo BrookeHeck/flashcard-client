@@ -16,7 +16,7 @@ export class AuthenticationService {
   public login(username: string, password: string): Observable<User> {
     return this.http.sendBasicAuthRequest(username, password).pipe(map(response => {
       this.saveToken(response.headers.get('jwt-header'));
-      this.addUserToLocalCache(response.body);
+      this.addUserToLocalCache(JSON.stringify(response.body));
       return response.body;
     }));
   }
