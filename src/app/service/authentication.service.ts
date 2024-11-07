@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { HttpRequestService} from "./http-request.service";
 import User from "../model/user";
 import {map, Observable} from "rxjs";
@@ -11,7 +11,7 @@ export class AuthenticationService {
   private token: string = '';
   private loggedInUsername = '';
 
-  constructor(private http: HttpRequestService, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpRequestService, private jwtHelper: JwtHelperService) {}
 
   public login(username: string, password: string): Observable<User> {
     return this.http.sendBasicAuthRequest(username, password).pipe(map(response => {

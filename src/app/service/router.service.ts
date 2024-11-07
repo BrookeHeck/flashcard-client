@@ -11,4 +11,8 @@ export class RouterService {
   public navigateToSelectRoleComponent(): void {
     this.router.navigate(['role-select'], {relativeTo: this.route});
   }
+
+  public navigateToLoginPage(): void {
+    this.router.navigate([''], {relativeTo: this.route})
+  }
 }
