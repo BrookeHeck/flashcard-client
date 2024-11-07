@@ -15,4 +15,8 @@ export class RouterService {
   public navigateToLoginPage(): void {
     this.router.navigate([''], {relativeTo: this.route})
   }
+
+  public navigateToHomePage(): void {
+    this.router.navigate(['home'], {relativeTo: this.route})
+  }
 }

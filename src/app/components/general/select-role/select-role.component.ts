@@ -8,6 +8,7 @@ import {Button} from "primeng/button";
 import {AuthenticationService} from "../../../service/authentication.service";
 import {take} from "rxjs";
 import Role from "../../../model/role";
+import {RouterService} from "../../../service/router.service";
 
 @Component({
   selector: 'app-select-role',
@@ -24,12 +25,13 @@ export class SelectRoleComponent {
     {field: "id", header: "Select Role/Org"}
   ];
 
-  constructor(public userStore: UserStoreService, private authService: AuthenticationService) {}
+  constructor(public userStore: UserStoreService, private authService: AuthenticationService, private routerService: RouterService) {}
 
   public submitRoleSelection() {
     this.authService.selectRoleById(this.selectedRole.id).pipe(take(1)).subscribe(permissions => {
       this.userStore.setSelectedRole(this.selectedRole);
       this.userStore.setPermissions(permissions);
+      this.routerService.navigateToHomePage();
     })
   }
 
