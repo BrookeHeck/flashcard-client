@@ -49,7 +49,7 @@ export class AuthenticationService {
   }
 
   public getUserFromCache(): User {
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem('user')) as User;
   }
 
   public isLoggedIn(): boolean {
