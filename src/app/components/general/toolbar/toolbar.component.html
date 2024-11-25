@@ -2,13 +2,13 @@
   <p-toolbar
     styleClass="bg-gray-900 shadow-2">
     <ng-template pTemplate="start">
-      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="primeng"/>
+      <img class="mx-4" src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="primeng"/>
     </ng-template>
     <ng-template pTemplate="center">
       {{user.selectedRole.organizationName.toUpperCase()}}
     </ng-template>
     <ng-template pTemplate="end">
-      <div class="d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center mx-4">
         <p-splitButton [label]="user.username" icon="pi pi-check" [model]="menuItems" />
         <p-avatar
           size="xlarge"
