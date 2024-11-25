@@ -32,4 +32,8 @@ export class UserStoreService {
   public setPermissions(permissions: PERMISSION[]): void {
     this._permissions$.next(permissions);
   }
+
+  public hasPermissions(permission: PERMISSION): boolean {
+    return this._permissions$.getValue().includes(permission);
+  }
 }
