@@ -1,23 +1,26 @@
-<p-table styleClass="p-datatable-striped" [columns]="columns" [value]="userStore.userRoles$ | async ">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns">{{col.header}}</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr>
-      <td *ngFor="let col of columns">
-        <span [hidden]="col.field === 'id' ">{{ rowData[col.field] }}</span>
-        <span *ngIf="col.field === 'id'">
+<h1 class="m-3">Organization and Role Select</h1>
+<div class="m-3 w-75">
+  <p-table styleClass="p-datatable-striped" [columns]="columns" [value]="userStore.userRoles$ | async ">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">{{col.header}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          <span [hidden]="col.field === 'id' ">{{ rowData[col.field] }}</span>
+          <span *ngIf="col.field === 'id'">
           <p-radioButton
             [value]="rowData"
             [(ngModel)]="selectedRole"
             inputId="roleId"
           ></p-radioButton>
         </span>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 
-<p-button (onClick)="submitRoleSelection()" class="mt-1" [disabled]="!selectedRole">Submit</p-button>
+  <p-button (onClick)="submitRoleSelection()" class="mt-1" [disabled]="!selectedRole">Submit</p-button>
+</div>
