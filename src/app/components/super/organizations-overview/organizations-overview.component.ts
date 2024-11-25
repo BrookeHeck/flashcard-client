@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {AccordionModule} from "primeng/accordion";
-import { NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import OrganizationOverviewDetails from "../../../model/organization-overview-details";
 
 @Component({
@@ -9,7 +9,8 @@ import OrganizationOverviewDetails from "../../../model/organization-overview-de
   imports: [
     AccordionModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    DatePipe
   ],
   templateUrl: './organizations-overview.component.html',
   styleUrl: './organizations-overview.component.scss'
