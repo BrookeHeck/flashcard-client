@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpRequestService} from "./http-request.service";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import OrganizationOverviewDetails from "../model/organization-overview-details";
 
 @Injectable({
@@ -11,6 +11,6 @@ export class OrganizationApiService {
 
   public getOrganizationOverviewDetails(): Observable<OrganizationOverviewDetails[]> {
     return this.httpRequest.getRequest<OrganizationOverviewDetails[]>
-    ('organization/get-organization-overview-details').pipe(tap(result => console.log(result)));
+    ('organization/get-organization-overview-details');
   }
 }

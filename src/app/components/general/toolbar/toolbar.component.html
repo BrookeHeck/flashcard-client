@@ -1,0 +1,20 @@
+<div *ngIf="user">
+  <p-toolbar
+    styleClass="bg-gray-900 shadow-2">
+    <ng-template pTemplate="start">
+      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="primeng"/>
+    </ng-template>
+    <ng-template pTemplate="center">
+      {{user.selectedRole.organizationName.toUpperCase()}}
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center align-content-center gap-2">
+        <span>{{user.username}}</span>
+        <p-avatar
+          size="xlarge"
+          [image]="user.profileImageUrl"
+          shape="circle" />
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>
