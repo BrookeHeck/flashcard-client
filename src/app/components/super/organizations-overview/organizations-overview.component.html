@@ -1,1 +1,16 @@
-<p>orgzations-overview works!</p>
+<p-accordion *ngIf=organizationOverviewDetails [activeIndex]="0">
+  <p-accordionTab *ngFor="let orgDetail of organizationOverviewDetails">
+    <ng-template pTemplate="header">
+      <span class="flex">
+        <span>{{orgDetail.organizationDisplayName}}</span>
+        <span>Details <i class="pi pi-info-circle"></i></span>
+        <span>{{orgDetail.numberOfAdmins}} Admins <i class="pi pi-user-edit"></i></span>
+        <span>Remove Org <i class="pi pi-trash"></i></span>
+      </span>
+    </ng-template>
+
+    <p>Date Joined: {{orgDetail.organizationCreationDate}} Teachers: {{orgDetail.numberOfTeachers}}
+     Teachers Assistants: {{orgDetail.numberOfAssistants}} Students: {{orgDetail.numberOfStudents}}
+    </p>
+  </p-accordionTab>
+</p-accordion>

@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
-import {OrganizationApiService} from "../../../service/organization-api.service";
+import {Component, Input} from '@angular/core';
+import {AccordionModule} from "primeng/accordion";
+import { NgForOf, NgIf} from "@angular/common";
+import OrganizationOverviewDetails from "../../../model/organization-overview-details";
 
 @Component({
   selector: 'app-organizations-overview',
   standalone: true,
-  imports: [],
+  imports: [
+    AccordionModule,
+    NgIf,
+    NgForOf
+  ],
   templateUrl: './organizations-overview.component.html',
   styleUrl: './organizations-overview.component.scss'
 })
 export class OrganizationsOverviewComponent {
-  private constructor(private organizationApi: OrganizationApiService) {}
+  @Input() organizationOverviewDetails: OrganizationOverviewDetails[];
 
-  
 }
