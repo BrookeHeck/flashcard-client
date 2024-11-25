@@ -19,4 +19,8 @@ export class RouterService {
   public navigateToHomePage(): void {
     this.router.navigate(['home'], {relativeTo: this.route})
   }
+
+  public navigateToManageNewOrgRequests(): void {
+    this.router.navigate(['manage-new-org-requests'], {relativeTo: this.route})
+  }
 }

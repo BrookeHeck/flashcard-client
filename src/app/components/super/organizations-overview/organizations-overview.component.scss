@@ -1,3 +1,9 @@
-#accordianHeader > span {
+#accordianHeader > * {
   margin: 0 1em;
+}
+
+#accordianHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
