@@ -6,7 +6,7 @@ import {UserStoreService} from "../../../store/user-store.service";
 import {FormsModule} from "@angular/forms";
 import {Button} from "primeng/button";
 import {AuthenticationService} from "../../../service/authentication.service";
-import {take} from "rxjs";
+import {take, zip} from "rxjs";
 import Role from "../../../model/role";
 import {RouterService} from "../../../service/router.service";
 
@@ -28,11 +28,14 @@ export class SelectRoleComponent {
   constructor(public userStore: UserStoreService, private authService: AuthenticationService, private routerService: RouterService) {}
 
   public submitRoleSelection() {
-    this.authService.selectRoleById(this.selectedRole.id).pipe(take(1)).subscribe(permissions => {
-      this.userStore.setSelectedRole(this.selectedRole);
-      this.userStore.setPermissions(permissions);
-      this.routerService.navigateToHomePage();
-    })
+    zip(this.authService.selectRoleById(this.selectedRole.id), this.userStore.user$).pipe(take(1))
+      .subscribe(([permissions, user]) => {
+        user.selectedRole=this.selectedRole;
+        user.permissions=permissions;
+        this.userStore.saveUser(user);
+        this.authService.addUserToLocalCache(user);
+        this.routerService.navigateToHomePage();
+    });
   }
 
 }

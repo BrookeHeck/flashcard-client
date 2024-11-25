@@ -1,1 +1,9 @@
-<p>home-page works!</p>
+<app-toolbar></app-toolbar>
+
+<div *ngIf="userStore.user$ | async">
+  <div *ngIf="userStore.hasPermissions(PERMISSION.MANAGE_ORGANIZATION)"><app-super-home></app-super-home></div>
+  <div *ngIf="userStore.hasPermissions(PERMISSION.ADD_DELETE_TEACHER)">ADMIN MODULE</div>
+  <div *ngIf="userStore.hasPermissions(PERMISSION.ADD_DELETE_TEACHER_ASSISTANT)">TEACHER MODULE</div>
+  <div *ngIf="userStore.hasPermissions(PERMISSION.CREATE_FLASHCARD_SET)">TEACHER ASSISTANT MODULE</div>
+  <div *ngIf="userStore.hasPermissions(PERMISSION.START_STOP_GAME)">STUDENT MODULE</div>
+</div>

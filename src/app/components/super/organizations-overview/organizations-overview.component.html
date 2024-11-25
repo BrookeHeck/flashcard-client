@@ -1,0 +1,20 @@
+<div class="m-auto w-75">
+  <p-accordion *ngIf=organizationOverviewDetails [activeIndex]="0" class="m-3">
+    <p-accordionTab *ngFor="let orgDetail of organizationOverviewDetails">
+      <ng-template pTemplate="header">
+        <div id="accordianHeader" >
+          <span>{{orgDetail.organizationDisplayName.toUpperCase()}}</span>
+          <span>Details <i class="pi pi-info-circle"></i></span>
+          <span>{{orgDetail.numberOfAdmins}} Admin <i class="pi pi-user-edit"></i></span>
+          <span>Remove Org <i class="pi pi-trash"></i></span>
+        </div>
+      </ng-template>
+      <div class="m-3">
+        <p>Date Joined: {{orgDetail.organizationCreationDate | date }}</p>
+        <p>Teachers: {{orgDetail.numberOfTeachers}}</p>
+        <p>Teacher's Assistants: {{orgDetail.numberOfAssistants}}</p>
+        <p>Students: {{orgDetail.numberOfStudents}}</p>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
