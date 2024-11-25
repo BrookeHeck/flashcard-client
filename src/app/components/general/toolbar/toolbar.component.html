@@ -8,8 +8,8 @@
       {{user.selectedRole.organizationName.toUpperCase()}}
     </ng-template>
     <ng-template pTemplate="end">
-      <div class="flex align-items-center align-content-center gap-2">
-        <span>{{user.username}}</span>
+      <div class="d-flex align-items-center justify-content-center">
+        <p-splitButton [label]="user.username" icon="pi pi-check" [model]="menuItems" />
         <p-avatar
           size="xlarge"
           [image]="user.profileImageUrl"
