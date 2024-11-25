@@ -1,4 +1,5 @@
 import Role from "./role";
+import {PERMISSION} from "../enum/PERMISSION";
 
 export default class User {
   id: number;
@@ -12,6 +13,8 @@ export default class User {
   profileImageUrl: string;
   lastLoginDate: Date;
   dateJoined: Date;
+  selectedRole: Role;
+  permissions: PERMISSION[];
 
   constructor(firstName: string, lastName: string, username: string, email: string, password: string) {
     this.firstName = firstName;

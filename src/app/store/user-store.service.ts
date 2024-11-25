@@ -3,6 +3,7 @@ import {BehaviorSubject, map, Observable} from "rxjs";
 import User from "../model/user";
 import Role from "../model/role";
 import {PERMISSION} from "../enum/PERMISSION";
+import {AuthenticationService} from "../service/authentication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,6 @@ import {PERMISSION} from "../enum/PERMISSION";
 export class UserStoreService {
   private _user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   public user$: Observable<User> = this._user$.asObservable();
-
-  private _selectedRole$: BehaviorSubject<Role> = new BehaviorSubject<Role>(null);
-  public selectedRole$: Observable<Role> = this._selectedRole$.asObservable();
-
-  private _permissions$: BehaviorSubject<PERMISSION[]> = new BehaviorSubject<PERMISSION[]>(null);
-  public permission$: Observable<PERMISSION[]> = this._permissions$.asObservable();
 
   public saveUser(user: User): void {
     this._user$.next(user);
@@ -25,15 +20,11 @@ export class UserStoreService {
     return this.user$.pipe(map(user => user?.roles ?? []));
   }
 
-  public setSelectedRole(role: Role): void {
-    this._selectedRole$.next(role);
-  }
-
-  public setPermissions(permissions: PERMISSION[]): void {
-    this._permissions$.next(permissions);
+  get permissions$(): Observable<PERMISSION[]> {
+    return this.user$.pipe(map(user => user.permissions));
   }
 
   public hasPermissions(permission: PERMISSION): boolean {
-    return this._permissions$.getValue().includes(permission);
+    return this._user$.getValue().permissions.includes(permission);
   }
 }

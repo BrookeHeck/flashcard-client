@@ -44,6 +44,7 @@ export class AuthenticationService {
 
   public saveToken(token: string): void {
     this.token = token;
+    this.sessionStorage.removeItem('benchmark');
     this.sessionStorage.setItem('benchmark', token);
   }
 
@@ -56,6 +57,7 @@ export class AuthenticationService {
   }
 
   public addUserToLocalCache(user: User): void {
+    this.sessionStorage.removeItem('user');
     this.sessionStorage.setItem('user', JSON.stringify(user));
   }
 

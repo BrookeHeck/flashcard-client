@@ -1,4 +1,4 @@
-<div *ngIf="userStore.permission$ | async">
+<div *ngIf="userStore.user$ | async">
   <div *ngIf="userStore.hasPermissions(PERMISSION.MANAGE_ORGANIZATION)"><app-super-home></app-super-home></div>
   <div *ngIf="userStore.hasPermissions(PERMISSION.ADD_DELETE_TEACHER)">ADMIN MODULE</div>
   <div *ngIf="userStore.hasPermissions(PERMISSION.ADD_DELETE_TEACHER_ASSISTANT)">TEACHER MODULE</div>
