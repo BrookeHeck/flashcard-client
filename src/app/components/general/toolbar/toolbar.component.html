@@ -9,7 +9,7 @@
     </ng-template>
     <ng-template pTemplate="end">
       <div class="d-flex align-items-center justify-content-center mx-4">
-        <p-splitButton [label]="user.username" icon="pi pi-check" [model]="menuItems" />
+        <p-splitButton [label]="user.username" [model]="menuItems" [raised]="true" severity="secondary"  />
         <p-avatar
           size="xlarge"
           [image]="user.profileImageUrl"

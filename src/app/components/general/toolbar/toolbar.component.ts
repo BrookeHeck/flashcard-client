@@ -8,6 +8,7 @@ import {AvatarModule} from "primeng/avatar";
 import {NgIf} from "@angular/common";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {MenuItem} from "primeng/api";
+import {RouterService} from "../../../service/router.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -26,13 +27,14 @@ export class ToolbarComponent implements OnInit {
   user: User;
   menuItems: MenuItem[];
 
-  constructor(private userStore: UserStoreService) {}
+  constructor(private userStore: UserStoreService, private routerServic: RouterService) {}
 
   ngOnInit() {
     this.userStore.user$.pipe(take(1)).subscribe(user => this.user=user);
     this.menuItems =  [{
       label: 'Switch Roles',
-      icon: 'pi pi-refresh'
+      icon: 'pi pi-refresh',
+      command: () => this.routerServic.navigateToSelectRoleComponent()
     }, {
       label: 'Edit Profile',
       icon: 'pi pi-times'}];
