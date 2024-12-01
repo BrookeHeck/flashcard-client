@@ -25,12 +25,12 @@ export class OrganizationApiService {
     return this.httpRequest.getRequest<number>('request-access/get-number-of-new-org-requests');
   }
 
-  public acceptNewOrganizationRequest(requestId: number, organizationName: string, adminUserId): Observable<number> {
-    const endpoint = `request-access/accept-access-request/${requestId}/${organizationName}/${adminUserId}`;
-    return this.httpRequest.postRequest<null, number>(endpoint, null);
+  public acceptNewOrganizationRequest(requestId: number, organizationName: string, adminUserId: number): Observable<number> {
+    const endpoint = `request-access/accept-access-request/${requestId}/${adminUserId}`;
+    return this.httpRequest.postRequest<string, number>(endpoint, organizationName);
   }
 
-  public denyNewOrganizationRequest(requestId: number): void {
+  public denyNewOrganizationRequest(requestId: number): Observable<number> {
     return this.httpRequest.deleteById('request-access/deny-new-organization-request', requestId);
   }
 
@@ -38,7 +38,7 @@ export class OrganizationApiService {
     return this.httpRequest.postRequest<string, Organization>('organization/create-organization', organizationDisplayName);
   }
 
-  public deleteOrganization(organizationId: number): void {
+  public deleteOrganization(organizationId: number): Observable<number> {
     return this.httpRequest.deleteById('organization/delete-organization', organizationId);
   }
 }

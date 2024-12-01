@@ -23,9 +23,9 @@ export class HttpRequestService {
     return this.httpClient.post<E>(url, object);
   }
 
-  public deleteById(endpoint: string, objectId: number): void {
+  public deleteById(endpoint: string, objectId: number): Observable<number> {
     const url = `${this.apiUrl}/${endpoint}/${objectId}`;
-    this.httpClient.delete(url);
+    return this.httpClient.delete(url).pipe(map(() => objectId));
   }
 
   public deleteObject<T>(endpoint: string, object: T): Observable<boolean> {
