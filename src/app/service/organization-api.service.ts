@@ -25,6 +25,15 @@ export class OrganizationApiService {
     return this.httpRequest.getRequest<number>('request-access/get-number-of-new-org-requests');
   }
 
+  public acceptNewOrganizationRequest(requestId: number, organizationName: string, adminUserId): Observable<number> {
+    const endpoint = `request-access/accept-access-request/${requestId}/${organizationName}/${adminUserId}`;
+    return this.httpRequest.postRequest<null, number>(endpoint, null);
+  }
+
+  public denyNewOrganizationRequest(requestId: number): void {
+    return this.httpRequest.deleteById('request-access/deny-new-organization-request', requestId);
+  }
+
   public createOrganization(organizationDisplayName: string): Observable<Organization> {
     return this.httpRequest.postRequest<string, Organization>('organization/create-organization', organizationDisplayName);
   }

@@ -19,9 +19,9 @@
               <p>Org Name: {{request.organizationDisplayName}}</p>
               <p>Date of Request: {{request.timeOfInsert | date}}</p>
             </div>
-            <div class="mx-3 d-flex flex-column">
-
-              <p-button label="Create Org"/>
+            <div class="mx-3 d-flex flex">
+              <p-button label="Create Org" class="mx-1" severity="success"/>
+              <p-button label="Deny Request" class="mx-1" severity="danger" />
             </div>
 
           </div>
