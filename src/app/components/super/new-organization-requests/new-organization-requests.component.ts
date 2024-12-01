@@ -5,7 +5,8 @@ import {PrimeTemplate} from "primeng/api";
 import {DataViewModule} from "primeng/dataview";
 import {OrganizationApiService} from "../../../service/organization-api.service";
 import NewOrganizationRequest from "../../../model/new-organization-request";
-import {take, tap} from "rxjs";
+import {take} from "rxjs";
+import {RouterService} from "../../../service/router.service";
 
 @Component({
   selector: 'app-new-organization-requests',
@@ -24,11 +25,10 @@ import {take, tap} from "rxjs";
 })
 export class NewOrganizationRequestsComponent implements OnInit {
   requests: NewOrganizationRequest[];
-  public constructor(private organizationApi: OrganizationApiService) {}
+  public constructor(private organizationApi: OrganizationApiService, public routerService: RouterService) {}
 
   ngOnInit() {
     this.organizationApi.getNewOrganizationRequests().pipe(
-      tap(result => console.log(result)),
       take(1))
       .subscribe(requests => this.requests = requests);
   }
