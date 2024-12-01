@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import User from "../model/user";
 
 @Injectable({
@@ -23,9 +23,14 @@ export class HttpRequestService {
     return this.httpClient.post<E>(url, object);
   }
 
-  public deleteById(endpoint: string, objectId: number) {
+  public deleteById(endpoint: string, objectId: number): void {
     const url = `${this.apiUrl}/${endpoint}/${objectId}`;
     this.httpClient.delete(url);
+  }
+
+  public deleteObject<T>(endpoint: string, object: T): Observable<boolean> {
+    const url = `${this.apiUrl}/${endpoint}`;
+    return this.httpClient.delete(url, object).pipe(map(() => true));
   }
 
   public sendBasicAuthRequest(username: string, password: string): Observable<HttpResponse<User>> {
