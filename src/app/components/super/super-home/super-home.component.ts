@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrganizationsOverviewComponent} from "../organizations-overview/organizations-overview.component";
 import {OrganizationApiService} from "../../../service/organization-api.service";
 import {AsyncPipe} from "@angular/common";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import OrganizationOverviewDetails from "../../../model/organization-overview-details";
 import {Button} from "primeng/button";
 import {BadgeModule} from "primeng/badge";
@@ -22,10 +22,12 @@ import {RouterService} from "../../../service/router.service";
 })
 export class SuperHomeComponent implements OnInit {
   organizationOverDetails: Observable<OrganizationOverviewDetails[]>;
+  numberOfRequests: Observable<number>;
   constructor(private organizationApi: OrganizationApiService, public routerService: RouterService) {}
 
   ngOnInit() {
     this.organizationOverDetails=this.organizationApi.getOrganizationOverviewDetails();
+    this.numberOfRequests = this.organizationApi.getNumberOfOrganizationRequests().pipe(tap(result => console.log(result)));
   }
 
 }

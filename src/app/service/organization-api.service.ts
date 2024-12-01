@@ -19,4 +19,8 @@ export class OrganizationApiService {
     return this.httpRequest.getRequest<NewOrganizationRequest[]>
     ('request-access/get-new-organization-requests')
   }
+
+  public getNumberOfOrganizationRequests(): Observable<number> {
+    return this.httpRequest.getRequest<number>('request-access/get-number-of-new-org-requests');
+  }
 }
