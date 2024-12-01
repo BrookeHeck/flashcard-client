@@ -27,7 +27,7 @@ export class SuperHomeComponent implements OnInit {
 
   ngOnInit() {
     this.organizationOverDetails=this.organizationApi.getOrganizationOverviewDetails();
-    this.numberOfRequests = this.organizationApi.getNumberOfOrganizationRequests().pipe(tap(result => console.log(result)));
+    this.numberOfRequests = this.organizationApi.getNumberOfOrganizationRequests();
   }
 
 }
