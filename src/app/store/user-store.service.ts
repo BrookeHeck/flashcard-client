@@ -24,7 +24,7 @@ export class UserStoreService {
     return this.user$.pipe(map(user => user.permissions));
   }
 
-  public hasPermissions(permission: PERMISSION): boolean {
+  public hasPermission(permission: PERMISSION): boolean {
     return this._user$.getValue().permissions.includes(permission);
   }
 }
