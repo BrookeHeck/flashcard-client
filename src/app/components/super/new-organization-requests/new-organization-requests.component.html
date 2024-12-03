@@ -1,0 +1,35 @@
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h1 class="my-2">New Organization Requests</h1>
+  <div class="card col-8 mx-auto my-5" *ngIf="_requests$ | async" >
+    <p-dataView [value]="_requests$ | async">
+      <ng-template pTemplate="list" let-requests>
+        <div class="col-12 my-3" *ngFor="let request of requests;">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex">
+              <div>
+                <img [src]="request.admin.profileImageUrl" [alt]="request.admin.userId" />
+              </div>
+              <div class="d-flex flex-column align-items-center justify-content-evenly">
+                <p>Admin Details: {{request.admin.id}}</p>
+                <p>Username: {{request.admin.username}}</p>
+                <p>Email: {{request.admin.email}}</p>
+              </div>
+            </div>
+            <div class="d-flex flex-column">
+              <p>Org Name: {{request.organizationDisplayName}}</p>
+              <p>Date of Request: {{request.timeOfInsert | date}}</p>
+            </div>
+            <div class="mx-3 d-flex flex">
+              <p-button label="Create Org" class="mx-1" severity="success"
+                        (onClick)="acceptNewOrganizationRequest(request.id, request.organizationDisplayName, request.admin.id)"/>
+              <p-button label="Deny Request" class="mx-1" severity="danger"
+              (onClick)="denyNewOrganizationRequest(request.id)"/>
+            </div>
+
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+  <p-button id='backButton' label="Back" (onClick)="routerService.navigateToHomePage()"/>
+</div>

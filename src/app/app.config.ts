@@ -7,6 +7,7 @@ import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/ht
 import {JwtModule} from "@auth0/angular-jwt";
 import {authInterceptor} from "./interceptor/auth.interceptor";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import {MessageService} from "primeng/api";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),
@@ -19,7 +20,8 @@ export const appConfig: ApplicationConfig = {
         tokenGetter: tokenGetter,
         allowedDomains: ["localhost:8080"]
       }
-    }))
+    })),
+    MessageService
   ]
 };
 

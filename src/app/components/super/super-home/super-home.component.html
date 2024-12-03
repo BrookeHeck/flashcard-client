@@ -1,3 +1,6 @@
+<p-button id="requestButton" (onClick)="routerService.navigateToManageNewOrgRequests()"
+>Requests <i class="pi pi-bell text-3xl mx-2" pBadge [value]="numberOfRequests | async"></i> </p-button>
+
 <app-organizations-overview
   [organizationOverviewDetails]="organizationOverDetails | async">
 </app-organizations-overview>

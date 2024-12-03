@@ -1,11 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
 import { HttpRequestService} from "./http-request.service";
 import User from "../model/user";
-import {map, Observable} from "rxjs";
+import {map, Observable, take} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {DOCUMENT} from "@angular/common";
 import {UserStoreService} from "../store/user-store.service";
 import {PERMISSION} from "../enum/PERMISSION";
+import {RouterService} from "./router.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthenticationService {
   private readonly sessionStorage;
 
   constructor(private http: HttpRequestService, private jwtHelper: JwtHelperService,
-              @Inject(DOCUMENT) private document: Document, private userStore: UserStoreService) {
+              @Inject(DOCUMENT) private document: Document, private userStore: UserStoreService,
+              private routerService: RouterService) {
     this.sessionStorage = this.document.defaultView?.sessionStorage;
   }
 

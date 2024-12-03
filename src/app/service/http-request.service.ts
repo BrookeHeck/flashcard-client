@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import {Observable} from "rxjs";
+import {catchError, map, Observable} from "rxjs";
 import User from "../model/user";
+import {MessageService} from "primeng/api";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpRequestService {
 
   readonly apiUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private messageService: MessageService) {}
+
+  private handleError(err: any, caught: Observable<any>) {
+    this.messageService.add({severity: 'danger', summary: 'Error', detail: 'Error processing your request. Contact admin if errors continue.'});
+    return caught;
+  }
 
   public getRequest<T>(endpoint: string): Observable<T> {
     const url = `${this.apiUrl}/${endpoint}`;
@@ -23,9 +29,14 @@ export class HttpRequestService {
     return this.httpClient.post<E>(url, object);
   }
 
-  public deleteById(endpoint: string, objectId: number) {
+  public deleteById(endpoint: string, objectId: number): Observable<number> {
     const url = `${this.apiUrl}/${endpoint}/${objectId}`;
-    this.httpClient.delete(url);
+    return this.httpClient.delete(url).pipe(map(() => objectId));
+  }
+
+  public deleteObject<T>(endpoint: string, object: T): Observable<boolean> {
+    const url = `${this.apiUrl}/${endpoint}`;
+    return this.httpClient.delete(url, object).pipe(map(() => true));
   }
 
   public sendBasicAuthRequest(username: string, password: string): Observable<HttpResponse<User>> {

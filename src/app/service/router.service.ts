@@ -13,10 +13,26 @@ export class RouterService {
   }
 
   public navigateToLoginPage(): void {
-    this.router.navigate([''], {relativeTo: this.route})
+    this.router.navigate([''], {relativeTo: this.route});
   }
 
   public navigateToHomePage(): void {
-    this.router.navigate(['home'], {relativeTo: this.route})
+    this.router.navigate(['home'], {relativeTo: this.route});
+  }
+
+  public navigateToManageNewOrgRequests(): void {
+    this.router.navigate(['manage-new-org-requests'], {relativeTo: this.route});
+  }
+
+  public navigateToPageNotFound(): void {
+    this.router.navigate(['page-not-found'], {relativeTo: this.route});
+  }
+
+  public navigateToOrganizationDetailsPage(organizationId: number) {
+    this.router.navigate(['organization-details-page', organizationId], {relativeTo: this.route});
+  }
+
+  public navigateToManageAdmins(organizationId: number) {
+    this.router.navigate(['manage-admins', organizationId], {relativeTo: this.route});
   }
 }
