@@ -6,6 +6,7 @@ import {ROLE} from "../../../enum/ROLE";
 import {AsyncPipe, NgIf} from "@angular/common";
 import UserDetailsForRole from "../../../model/user-details-for-role";
 import {UserDetailsTableComponent} from "../../tables/user-details-table/user-details-table.component";
+import Role from "../../../model/role";
 
 @Component({
   selector: 'app-manage-admins',
@@ -22,11 +23,23 @@ export class ManageAdminsComponent implements OnInit {
   organizationAdminList$: Observable<UserDetailsForRole[]>;
   userRoleService = inject(UserRolesService);
   route = inject(ActivatedRoute);
+  organizationId: number;
 
   ngOnInit() {
     this.organizationAdminList$ = this.route.paramMap.pipe(
-      switchMap(params => this.userRoleService
-        .getUserDetailsForRolesAtOrg(parseInt(params.get('organizationId')), ROLE.ADMIN))
-    );
+      switchMap(params => {
+        this.organizationId = parseInt(params.get('organizatoinId'));
+        return this.userRoleService.getUserDetailsForRolesAtOrg(this.organizationId, ROLE.ADMIN);
+      }
+    ));
+  }
+
+  createAdminForOrganization(userId: number): void {
+    role: Role = new Role(this.organizationId, ROLE.ADMIN, userId);
+
+  }
+
+  removeAdminForOrganization(roleId: number) {
+
   }
 }

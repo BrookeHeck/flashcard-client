@@ -6,4 +6,11 @@ export default class Role {
   organizationName: string;
   role: ROLE;
   userId: number;
+
+
+  constructor(organizationId: number, role: ROLE, userId: number) {
+    this.organizationId = organizationId;
+    this.role = role;
+    this.userId = userId;
+  }
 }
