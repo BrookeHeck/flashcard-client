@@ -1,3 +1,1 @@
-<div *ngIf="organizationAdminList$ | async as adminList">
-
-</div>
+<app-user-details-table [userDetails]="organizationAdminList$ | async"></app-user-details-table>
