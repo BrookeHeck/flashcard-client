@@ -3,7 +3,7 @@ import {HttpRequestService} from "./http-request.service";
 import {Observable} from "rxjs";
 import OrganizationOverviewDetails from "../model/organization-overview-details";
 import NewOrganizationRequest from "../model/new-organization-request";
-import Organization from "../model/Organization";
+import Organization from "../model/organization";
 
 @Injectable({
   providedIn: 'root'
