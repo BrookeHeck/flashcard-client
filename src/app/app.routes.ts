@@ -11,17 +11,20 @@ import {PageNotFoundComponent} from "./components/general/page-not-found/page-no
 import {OrganizationDetailsComponent} from "./components/super/organization-details/organization-details.component";
 import {ManageAdminsComponent} from "./components/super/manage-admins/manage-admins.component";
 import {PERMISSION} from "./enum/PERMISSION";
+import {MainFrameComponent} from "./components/general/main-frame/main-frame.component";
 
 export const routes: Routes = [
   {path: '', component: SplashPageComponent },
   {path: 'register', component: RegistrationPageComponent},
-  {path: 'home', component: HomePageComponent, canActivate: [authenticationGuard]},
-  {path: 'role-select', component: SelectRoleComponent, canActivate: [authenticationGuard]},
-  {path: 'manage-new-org-requests', component: NewOrganizationRequestsComponent,
-    canActivate: [authenticationGuard], data: {permission: [PERMISSION.MANAGE_ORGANIZATION]}},
-  {path: 'organization-details-page/:organizationId', component: OrganizationDetailsComponent,
-    canActivate: [authenticationGuard], data: {permission: [PERMISSION.MANAGE_ORGANIZATION]}},
-  {path: 'manage-admins/:organizationId', component: ManageAdminsComponent,
-    canActivate: [authenticationGuard], data: {permission: [PERMISSION.MANAGE_ORGANIZATION]}},
+  {path: 'user', component: MainFrameComponent, children: [
+      {path: 'home', component: HomePageComponent, canActivate: [authenticationGuard]},
+      {path: 'role-select', component: SelectRoleComponent, canActivate: [authenticationGuard]},
+      {path: 'manage-new-org-requests', component: NewOrganizationRequestsComponent,
+        canActivate: [authenticationGuard], data: {permission: [PERMISSION.MANAGE_ORGANIZATION]}},
+      {path: 'organization-details-page/:organizationId', component: OrganizationDetailsComponent,
+        canActivate: [authenticationGuard], data: {permission: [PERMISSION.MANAGE_ORGANIZATION]}},
+      {path: 'manage-admins/:organizationId', component: ManageAdminsComponent,
+        canActivate: [authenticationGuard], data: {permission: [PERMISSION.MANAGE_ORGANIZATION]}},
+    ]},
   {path: '**', component: PageNotFoundComponent},
 ];
